@@ -14,9 +14,85 @@ html {
 
 body {
   background: #69d5ba;
+
 }
 
-/* HEADER */
+body.dark-mode {
+  background: #081b29;
+  color: #ededed;
+}
+
+body.dark-mode .header {
+  background: rgba(0, 0, 0, 0.7);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .logo,
+body.dark-mode .nav-links li a {
+  color: #fff;
+}
+
+
+body.dark-mode .about,
+body.dark-mode .skills,
+body.dark-mode .experience {
+  background: #081b29;
+}
+
+
+body.dark-mode .grid-card,
+body.dark-mode .project-card,
+body.dark-mode .skill-card {
+  background: #112d42;
+  border-color: #00eeff;
+  color: #fff;
+}
+
+body.dark-mode .section-title {
+  color: #fff;
+}
+
+
+body.dark-mode .contact-container {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.dark-mode {
+  background: #111;
+  color: white;
+}
+
+.dark-mode .header {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.dark-mode .project-card {
+  background: #1e1e1e;
+  color: white;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(to right, #009dff, #ff00ff);
+  color: white;
+}
+
+.theme-toggle {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  z-index: 1001;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  background: #333;
+  color: white;
+  border: none;
+}
+
 .header {
   position: fixed;
   top: 1rem;
@@ -25,7 +101,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* 🔥 IMPORTANT */
   gap: 2rem;
   width: 80%;
   padding: 0.8rem 2rem;
@@ -110,7 +185,7 @@ section {
 
 /* ABOUT */
 .about {
-  background: #f5f5f5;
+  background: #69d5ba;
 }
 
 .about-content {
@@ -199,7 +274,7 @@ section {
 .skills-list span {
   padding: 10px 20px;
   border-radius: 20px;
-  background: #ddd;
+  background: #69d5ba;
 }
 
 .experience-info {
@@ -267,7 +342,6 @@ section {
 .project-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  /* 3 cards in one row */
   gap: 2rem;
   padding: 2rem;
 }
@@ -370,9 +444,6 @@ footer ul li a {
 
 }
 
-/* --- RESPONSIVE DESIGN --- */
-
-/* Tablets and Small Laptops (1024px and below) */
 @media (max-width: 1024px) {
   .header {
     width: 90%;
@@ -572,29 +643,6 @@ footer ul li a {
   }
 }
 
-.dark-mode {
-  background: #111;
-  color: white;
-}
-
-.dark-mode .header {
-  background: rgba(0, 0, 0, 0.6);
-}
-
-.dark-mode .project-card {
-  background: #1e1e1e;
-  color: white;
-}
-
-.hero {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background: linear-gradient(to right, #009dff, #ff00ff);
-  color: white;
-}
-
 .hero-content h1 {
   font-size: 3rem;
 }
@@ -603,22 +651,176 @@ footer ul li a {
   margin: 1rem 0;
 }
 
-.contact form {
+/* --- Contact Section Styles --- */
+.contact {
+  padding: 100px 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+.contact-container {
+  background: rgba(255, 255, 255, 0.05);
+  /* Semi-transparent glass effect */
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 40px;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: var(--text-color);
+  /* Uses your variable from index.html */
+}
+
+/* Form Layout */
+form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  width: 300px;
-  margin: auto;
+  gap: 20px;
 }
 
-.contact input,
-.contact textarea {
-  padding: 10px;
+.field-group {
+  position: relative;
+  width: 100%;
+}
+
+/* Input & Textarea Styling */
+form input,
+form textarea {
+  width: 100%;
+  padding: 15px 45px 15px 20px;
+  /* Space for the icon on the right */
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid transparent;
   border-radius: 10px;
-  border: 1px solid #ccc;
+  color: var(--text-color);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  outline: none;
 }
 
-.contact textarea {
+form textarea {
+  height: 150px;
   resize: none;
-  height: 120px;
+  padding-right: 20px;
+}
+
+/* Hover & Focus Effects */
+form input:focus,
+form textarea:focus {
+  border-color: #00eeff;
+  /* Cyan glow to match your theme */
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Icon Positioning */
+.field-group i {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #00eeff;
+  font-size: 1.2rem;
+}
+
+/* Submit Button */
+.contact .btn {
+  padding: 15px;
+  background: #00eeff;
+  color: #081b29;
+  /* Dark text on bright button */
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  border: none;
+  font-size: 1.1rem;
+}
+
+.contact .btn:hover {
+  background: #00b8cc;
+  box-shadow: 0 0 20px #00eeff;
+  transform: translateY(-3px);
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  .contact {
+    padding: 60px 5%;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+}
+
+/* --- Modern Skills Section --- */
+.skills {
+  background: #f9f9f9;
+  text-align: center;
+}
+
+.skills-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.skill-card {
+  background: white;
+  padding: 20px 40px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: default;
+  border: 2px solid transparent;
+}
+
+/* The Animation Effect */
+.skill-card:hover {
+  transform: translateY(-10px) scale(1.1);
+  border-color: #009dff;
+  box-shadow: 0 10px 25px rgba(0, 157, 255, 0.3);
+}
+
+.skill-card i {
+  font-size: 2.5rem;
+  color: #333;
+  transition: 0.3s;
+}
+
+/* Color icons on hover */
+.skill-card:hover i {
+  color: #009dff;
+}
+
+.skill-card span {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+/* Dark Mode support for Skills */
+.dark-mode .skill-card {
+  background: #1e1e1e;
+  color: white;
+}
+
+.dark-mode .skill-card span {
+  color: white;
 }

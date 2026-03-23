@@ -60,13 +60,25 @@
     </div>
   </section>
   <section id="skills" class="skills">
-    <h2 class="section-title">Skills</h2>
+    <h2 class="section-title">Technical <span>Skills</span></h2>
 
     <div class="skills-list">
-      <span>HTML</span>
-      <span>CSS</span>
-      <span>JavaScript</span>
-      <span>Git & GitHub</span>
+      <div class="skill-card">
+        <i class="fa-brands fa-html5"></i>
+        <span>HTML</span>
+      </div>
+      <div class="skill-card">
+        <i class="fa-brands fa-css3-alt"></i>
+        <span>CSS</span>
+      </div>
+      <div class="skill-card">
+        <i class="fa-brands fa-js"></i>
+        <span>JavaScript</span>
+      </div>
+      <div class="skill-card">
+        <i class="fa-brands fa-git-alt"></i>
+        <span>Git & GitHub</span>
+      </div>
     </div>
   </section>
   <section id="experience" class="experience">
@@ -79,28 +91,30 @@
 
           <span>Frontend Developer</span>
           <h3>MTN Cameroon</h3>
-          <p> I work for MTN Cameroon as a Frontend Developer for 3yrs it was a very great experience.</p>
+          <p> I work for MTN Cameroon as a Frontend Developer for 3yrs it was a very great experience.These are just
+            examples.</p>
 
         </div>
         <div class="grid-card">
           <i class="fa-solid fa-file-code"></i>
           <span>System Designer</span>
           <h3>Orange Cameroon</h3>
-          <p> I work for Orange Cameroon as a System Designer for 2yrs it was a very great experience.</p>
+          <p> I work for Orange Cameroon as a System Designer for 2yrs it was a very great experience.These are just
+            examples.</p>
 
         </div>
         <div class="grid-card">
           <i class="fa-solid fa-palette"></i>
           <span>Graphic Designer</span>
           <h3>CNPC</h3>
-          <p> I work for CNPC as a Graphic Designer for 1yr it was a very great experience.</p>
+          <p> I work for CNPC as a Graphic Designer for 1yr it was a very great experience.These are just examples.</p>
 
         </div>
         <div class="grid-card">
           <i class="fa-brands fa-youtube"></i>
           <span>Cameroonain Content Creator</span>
           <h3>For my self</h3>
-          <p> I work for MTN Cameroon as a Frontend Developer for 3yrs it was a very great experience.</p>
+          <p> .These are just examples.</p>
 
         </div>
 
@@ -147,16 +161,26 @@
 
     </div>
   </section>
-  <section id="contact" class="contact">
-    <h2 class="section-title">Contact Me</h2>
+  <section class="contact" id="contact">
+    <div class="contact-container">
+      <h2 class="section-title">Get In <span>Touch</span></h2>
 
-    <form id="contact-form">
-      <input type="text" name="user_name" placeholder="Your Name" required>
-      <input type="email" name="user_email" placeholder="Your Email" required>
-      <textarea name="message" placeholder="Your Message" required></textarea>
+      <form action="https://formspree.io/f/mbdzvqpn" method="POST">
+        <div class="field-group">
+          <input type="text" name="name" placeholder="Full Name" required>
+          <i class="fa-solid fa-user"></i>
+        </div>
 
-      <button type="submit" class="btn">Send Message</button>
-    </form>
+        <div class="field-group">
+          <input type="email" name="email" placeholder="Email Address" required>
+          <i class="fa-solid fa-envelope"></i>
+        </div>
+
+        <textarea name="message" placeholder="Your Message" required></textarea>
+
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+    </div>
   </section>
   <footer>
     <ul>
