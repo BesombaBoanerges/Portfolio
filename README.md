@@ -1,8 +1,10 @@
 Professional Portfolio | Besomba Boanerges
 A modern, responsive multi-page personal portfolio website built to showcase web development skills, professional experience, and personal projects.
 The goal of this project is to create a clean, modern, and responsive portfolio to present my work and connect with opportunities
+
  Live Demo
 https://portfolio-rho-blond-c6u7pe2ki0.vercel.app/
+
 
 Tech Stack
 HTML: Semantic structure for accessibility and SEO.
@@ -22,6 +24,7 @@ Smooth Navigation: Interactive hamburger menu for mobile users and smooth-scroll
 Working Contact Form: Integrated with client-side validation for seamless communication.
 
 Professional Polish: Includes hover effects, glassmorphism header, and high-quality UI components.
+
 
  Project Structure
  index.html : Hero landing page
