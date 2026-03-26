@@ -1,18 +1,12 @@
-const express = require("express");
-const path = require("path");
+const express = require('express');
 const app = express();
 
-// Middleware
-app.use(express.json());
-app.use(express.static(path.join(__dirname, "../public"))); // serve frontend
+const PORT = process.env.PORT || 3000;
 
-// Example backend route
-app.post("/contact", (req, res) => {
-  const { name, email, message } = req.body;
-  console.log("Contact form:", name, email, message);
-  res.json({ status: "success", message: "Form received" });
+app.get('/', (req, res) => {
+  res.send('Backend is running!');
 });
 
-// Start server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
