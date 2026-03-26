@@ -25,6 +25,7 @@
       <li>
         <a href="#contact">Contact</a>
       </li>
+
     </ul>
     <i class="fa-solid fa-bars"></i>
     <a href="https://github.com/BesombaBoanerges" target="_blank" rel="noopener noreferrer" class="visit-btn">Visit
@@ -161,26 +162,32 @@
 
     </div>
   </section>
-  <section class="contact" id="contact">
-    <div class="contact-container">
-      <h2 class="section-title">Get In <span>Touch</span></h2>
+  <section id="contact" class="contact">
 
-      <form action="https://formspree.io/f/mbdzvqpn" method="POST">
+    <div class="contact-container">
+
+      <h2>Contact Me</h2>
+
+      <form id="contact-form">
+
         <div class="field-group">
-          <input type="text" name="name" placeholder="Full Name" required>
+          <input type="text" id="name" name="name" placeholder="Full Name" required>
           <i class="fa-solid fa-user"></i>
         </div>
 
         <div class="field-group">
-          <input type="email" name="email" placeholder="Email Address" required>
+          <input type="email" id="email" name="email" placeholder="Email Address" required>
           <i class="fa-solid fa-envelope"></i>
         </div>
 
-        <textarea name="message" placeholder="Your Message" required></textarea>
+        <textarea id="message" name="message" placeholder="Your Message" required></textarea>
 
         <button type="submit" class="btn">Send Message</button>
+
       </form>
+
     </div>
+
   </section>
   <footer>
     <ul>

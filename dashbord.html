@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+  <style>
+    /* Global */
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      background: #1f1f2e;
+      color: #eee;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    /* Login Section */
+    #login-section {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    #login-section input {
+      padding: 10px;
+      width: 200px;
+      border-radius: 5px;
+      border: none;
+      margin-bottom: 10px;
+    }
+
+    #login-section button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background: #4caf50;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    #login-section button:hover {
+      background: #45a049;
+    }
+
+    /* Dashboard */
+    #dashboard {
+      display: none;
+      padding: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #2c2c3e;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    th,
+    td {
+      padding: 12px 15px;
+      text-align: left;
+    }
+
+    th {
+      background: #3b3b58;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    td {
+      background: #2c2c3e;
+      border-bottom: 1px solid #444;
+    }
+
+    tr:hover td {
+      background: #3d3d60;
+    }
+
+    /* Scrollable table */
+    table tbody {
+      display: block;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    table thead,
+    table tbody tr {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+
+      table th,
+      table td {
+        font-size: 14px;
+        padding: 8px 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="login-section">
+    <h2>Admin Login</h2>
+    <input type="password" id="password" placeholder="Enter password">
+    <button onclick="login()"><i class="fa-solid fa-right-to-bracket"></i> Enter</button>
+  </div>
+
+  <div id="dashboard">
+    <h2>Messages Dashboard</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Message</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody id="table-body"></tbody>
+    </table>
+  </div>
+
+  <script>
+    function login() {
+      const pass = document.getElementById("password").value;
+
+      if (pass === "ntec2026") {
+        document.getElementById("login-section").style.display = "none";
+        document.getElementById("dashboard").style.display = "block";
+        loadMessages();
+      } else {
+        alert("❌ Wrong password");
+      }
+    }
+
+    async function loadMessages() {
+      try {
+        const res = await fetch("http://localhost:5000/messages");
+        const data = await res.json();
+
+        const table = document.getElementById("table-body");
+        table.innerHTML = "";
+
+        if (data.length === 0) {
+          table.innerHTML = `<tr><td colspan="4" style="text-align:center;">No messages yet</td></tr>`;
+        }
+
+        data.forEach(msg => {
+          table.innerHTML += `
+            <tr>
+              <td>${msg.name}</td>
+              <td>${msg.email}</td>
+              <td>${msg.message}</td>
+              <td>${new Date(msg.date).toLocaleString()}</td>
+            </tr>
+          `;
+        });
+      } catch (err) {
+        console.error(err);
+        alert("🚫 Cannot load messages. Is your backend running?");
+      }
+    }
+  </script>
+
+</body>
+
+</html>
