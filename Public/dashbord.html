@@ -155,7 +155,7 @@
 
     async function loadMessages() {
       try {
-        const res = await fetch("http://localhost:5000/messages");
+        const res = await fetch("https://portfolio-6-tlpg.onrender.com/messages");
         const data = await res.json();
 
         const table = document.getElementById("table-body");
