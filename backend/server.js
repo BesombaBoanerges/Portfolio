@@ -4,7 +4,7 @@ const sqlite3 = require("sqlite3").verbose();
 const bodyParser = require("body-parser");
 
 const app = express();
-const PORT = 5000;
+const PORT = 3000;
 
 // Middleware
 app.use(cors());
