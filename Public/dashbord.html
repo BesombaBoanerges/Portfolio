@@ -152,34 +152,38 @@
         alert("❌ Wrong password");
       }
     }
-
     async function loadMessages() {
       try {
-        const res = await fetch("https://portfolio-6-tlpg.onrender.com/messages");
+        const res = await fetch("https://portfolio-7-c12k.onrender.com/api");
         const data = await res.json();
 
         const table = document.getElementById("table-body");
         table.innerHTML = "";
 
         if (data.length === 0) {
-          table.innerHTML = `<tr><td colspan="4" style="text-align:center;">No messages yet</td></tr>`;
+          table.innerHTML = `<tr><td colspan="4">No messages yet</td></tr>`;
+          return;
         }
 
         data.forEach(msg => {
           table.innerHTML += `
-            <tr>
-              <td>${msg.name}</td>
-              <td>${msg.email}</td>
-              <td>${msg.message}</td>
-              <td>${new Date(msg.date).toLocaleString()}</td>
-            </tr>
-          `;
+        <tr>
+          <td>${msg.name}</td>
+          <td>${msg.email}</td>
+          <td>${msg.message}</td>
+          <td>${new Date(msg.date).toLocaleString()}</td>
+        </tr>
+      `;
         });
+
       } catch (err) {
         console.error(err);
-        alert("🚫 Cannot load messages. Is your backend running?");
+        alert("🚫 Cannot load messages");
       }
     }
+
+    // Auto load
+    loadMessages();
   </script>
 
 </body>

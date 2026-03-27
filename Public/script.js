@@ -27,20 +27,13 @@ form.addEventListener("submit", async (e) => {
   const email = document.getElementById("email").value.trim();
   const message = document.getElementById("message").value.trim();
 
-  // Validation
   if (!name || !email || !message) {
     alert("⚠️ Please fill all fields");
     return;
   }
 
-  if (!email.includes("@")) {
-    alert("⚠️ Enter a valid email");
-    return;
-  }
-
   try {
-    // UPDATED: Changed Port from 5000 to 3000 to match your server.js
-    const res = await fetch("http://localhost:3000/submit-message", {
+    const res = await fetch("https://portfolio-7-c12k.onrender.com/submit-message", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -54,20 +47,11 @@ form.addEventListener("submit", async (e) => {
       alert("✅ Message sent successfully!");
       form.reset();
     } else {
-      alert("❌ Failed to send message: " + (data.error || "Unknown error"));
+      alert("❌ Failed: " + data.error);
     }
 
   } catch (error) {
-    console.error("Connection Error:", error);
-    alert("🚫 Cannot connect to server. Make sure you ran 'node server.js'");
+    console.error(error);
+    alert("🚫 Server error. Try again.");
   }
-});
-// Old line:
-// const res = await fetch("http://localhost:3000/submit-message", ...
-
-// New line:
-const res = await fetch("https://portfolio-6-tlpg.onrender.com/submit-message", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ name, email, message })
 });
