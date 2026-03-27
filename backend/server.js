@@ -1,26 +1,16 @@
 const express = require("express");
 const cors = require("cors");
 const sqlite3 = require("sqlite3").verbose();
-const bodyParser = require("body-parser");
 
 const app = express();
-
-// FIX 1: Use the port Render gives you, or 3000 locally
 const PORT = process.env.PORT || 3000;
 
-// FIX 2: Open CORS so your Vercel site can connect
-app.use(cors({
-  origin: "*",
-  methods: ["GET", "POST"]
-}));
+app.use(cors());
+app.use(express.json());
 
-app.use(bodyParser.json());
+const db = new sqlite3.Database("./message.db");
 
-const db = new sqlite3.Database("./message.db", (err) => {
-  if (err) console.error(err.message);
-  else console.log("Connected to SQLite DB ✅");
-});
-
+// Create table
 db.run(`CREATE TABLE IF NOT EXISTS messages (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name TEXT,
@@ -29,6 +19,12 @@ db.run(`CREATE TABLE IF NOT EXISTS messages (
   date TEXT
 )`);
 
+// TEST ROUTE (important for Render)
+app.get("/", (req, res) => {
+  res.send("Backend is running ✅");
+});
+
+// SEND MESSAGE
 app.post("/submit-message", (req, res) => {
   const { name, email, message } = req.body;
   const date = new Date().toISOString();
@@ -42,12 +38,13 @@ app.post("/submit-message", (req, res) => {
     [name, email, message, date],
     function (err) {
       if (err) return res.json({ success: false, error: err.message });
-      res.json({ success: true, id: this.lastID });
+      res.json({ success: true });
     }
   );
 });
 
-app.get("/messages", (req, res) => {
+// GET MESSAGES (FIXED ROUTE NAME)
+app.get("/api", (req, res) => {
   db.all("SELECT * FROM messages ORDER BY id DESC", [], (err, rows) => {
     if (err) return res.json({ success: false, error: err.message });
     res.json(rows);
