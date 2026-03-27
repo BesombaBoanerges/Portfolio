@@ -4,22 +4,23 @@ const sqlite3 = require("sqlite3").verbose();
 const bodyParser = require("body-parser");
 
 const app = express();
-const PORT = 3000;
 
-// Middleware
+// FIX 1: Use the port Render gives you, or 3000 locally
+const PORT = process.env.PORT || 3000;
+
+// FIX 2: Open CORS so your Vercel site can connect
 app.use(cors({
   origin: "*",
   methods: ["GET", "POST"]
 }));
+
 app.use(bodyParser.json());
 
-// Connect to DB
 const db = new sqlite3.Database("./message.db", (err) => {
   if (err) console.error(err.message);
   else console.log("Connected to SQLite DB ✅");
 });
 
-// Create table if not exists
 db.run(`CREATE TABLE IF NOT EXISTS messages (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name TEXT,
@@ -28,7 +29,6 @@ db.run(`CREATE TABLE IF NOT EXISTS messages (
   date TEXT
 )`);
 
-// POST route to save messages
 app.post("/submit-message", (req, res) => {
   const { name, email, message } = req.body;
   const date = new Date().toISOString();
@@ -47,7 +47,6 @@ app.post("/submit-message", (req, res) => {
   );
 });
 
-// GET route to see all messages
 app.get("/messages", (req, res) => {
   db.all("SELECT * FROM messages ORDER BY id DESC", [], (err, rows) => {
     if (err) return res.json({ success: false, error: err.message });
@@ -55,5 +54,4 @@ app.get("/messages", (req, res) => {
   });
 });
 
-// Start server
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
